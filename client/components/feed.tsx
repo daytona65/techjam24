@@ -1,6 +1,6 @@
 import React from 'react';
 import { Stack } from 'expo-router';
-import { View, Text, ScrollView, SafeAreaView } from 'react-native';
+import { View, Text, ScrollView, SafeAreaView, StyleSheet } from 'react-native';
 import { Video } from 'expo-av';
 
 const post = {
@@ -13,10 +13,17 @@ const Feed = () => {
             <Stack.Screen 
                 options={{ headerShown: false }}
             />
-            <Video source={{ uri: post.video}} />
+            <Video style ={StyleSheet.absoluteFill} source={{ uri: post.video}} />
             <Text>Video Feed</Text>
         </SafeAreaView>
     )
 }
+
+const style = StyleSheet.create({
+    video: {
+        width: '100%',
+        height: '100%'
+    }
+});
 
 export default Feed;
