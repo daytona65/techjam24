@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2024-07-01T08:00:59.312Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36" etag="xfrFYKZmPoM6LBx55NNL" version="24.6.4" type="device">
+<mxfile host="app.diagrams.net" modified="2024-07-03T07:50:59.040Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36" etag="-7ZYfIOEkSX_PwaAZBXS" version="24.6.4" type="device">
   <diagram name="Page-1" id="0t8LAIMu6yr9lGlDkOlW">
-    <mxGraphModel dx="954" dy="530" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="954" dy="640" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -22,16 +22,16 @@
         <mxCell id="sWmDAMp9s7EireoH76dH-6" value="Product Pool" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" vertex="1" parent="1">
           <mxGeometry x="935" y="370" width="110" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="sWmDAMp9s7EireoH76dH-7" value="&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Personalization Layer&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#6c8ebf;dashed=1;fillColor=#dae8fc;" vertex="1" parent="1">
+        <mxCell id="sWmDAMp9s7EireoH76dH-7" value="&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Personalized Data Layer&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#6c8ebf;dashed=1;fillColor=#dae8fc;" vertex="1" parent="1">
           <mxGeometry x="365" y="80" width="705" height="160" as="geometry" />
         </mxCell>
         <mxCell id="sWmDAMp9s7EireoH76dH-8" value="Past Likes/Dislikes, product rankings" style="rounded=1;whiteSpace=wrap;html=1;arcSize=14;" vertex="1" parent="1">
           <mxGeometry x="670" y="100" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="sWmDAMp9s7EireoH76dH-9" value="Personalized Product Recommendations" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="sWmDAMp9s7EireoH76dH-9" value="Personalized Product Recommendations" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="765" y="280" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="sWmDAMp9s7EireoH76dH-10" value="Matchmaker Model" style="rounded=1;whiteSpace=wrap;html=1;arcSize=19;" vertex="1" parent="1">
+        <mxCell id="sWmDAMp9s7EireoH76dH-10" value="Matchmaker Model" style="rounded=1;whiteSpace=wrap;html=1;arcSize=0;" vertex="1" parent="1">
           <mxGeometry x="930" y="280" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="sWmDAMp9s7EireoH76dH-11" value="Realtime Data" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
