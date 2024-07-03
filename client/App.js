@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { Button, StyleSheet, Text, View } from 'react-native';
 import { Tabs } from './tabs';
-import { Feed } from './components/feed';
+import Feed from './components/feed';
 
 
 export default function App() {
