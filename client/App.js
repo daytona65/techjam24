@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { Button, StyleSheet, Text, View } from 'react-native';
 import { Tabs } from './tabs';
 import Feed from './components/feed';
+import Card from './components/card';
 
 
 export default function App() {
