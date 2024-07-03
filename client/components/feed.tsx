@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { Stack } from 'expo-router';
 import { View, Text, ScrollView, SafeAreaView, StyleSheet } from 'react-native';
 import { Video } from 'expo-av';
