@@ -34,13 +34,13 @@ def get_product_details(product_id):
 '''
 get recommendations for users
 '''
-def get_products_for_user(userId):
+def get_products_for_user(user_id):
     if request.method == 'GET':
-        user_json_string = json.dumps(list(user_collection.find({"userId": userId}))[0], default=json_util.default)
+        user_json_string = json.dumps(list(user_collection.find({"user_id": user_id}))[0], default=json_util.default)
         user = json.loads(user_json_string)
         
         userObj = User(
-                    user["userId"],
+                    user["user_id"],
                     user["name"], 
                     user["age_group"], 
                     user["gender"],
