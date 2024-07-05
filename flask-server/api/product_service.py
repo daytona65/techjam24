@@ -16,12 +16,16 @@ db = client[config['DB_NAME']]
 user_collection = db['users']
 product_collection = db['products']
 
+'''
+get_products
+- all products
+- 1 product by id
+'''
 def get_all_products():
     if request.method == 'GET':
         results = list(product_collection.find())
         return Response(json.dumps(results, default=str), mimetype="application/json")
 
-#return product details - productId, title, url, price, image_url
 def get_product_details(product_id):
     if request.method == 'GET':
         results = list(product_collection.find({"product_id": product_id}))
