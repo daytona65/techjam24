@@ -119,6 +119,6 @@ const styles = StyleSheet.create({
       transform: [{rotate: '30deg'}],
     },
     matchContainer: {
-      backgroundColor: 'red'
+      
     }
   });
