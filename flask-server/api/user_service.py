@@ -18,9 +18,9 @@ def get_all_users():
 
 
 # retrieves one user by id
-def get_user_details(userId):
+def get_user_details(user_id):
     if request.method == 'GET':
-        results = list(user_collection.find({"userId": userId}))
+        results = list(user_collection.find({"userId": user_id}))
         return json.dumps(results[0], default=json_util.default)
 
 
