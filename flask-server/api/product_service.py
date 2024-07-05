@@ -14,8 +14,12 @@ client = MongoClient(config['ATLAS_URI'])
 db = client[config['DB_NAME']]
 
 user_collection = db['users']
+product_collection = db['products']
 
-
+def get_all_products():
+    if request.method == 'GET':
+        results = list(product_collection.find())
+        return Response(json.dumps(results, default=str), mimetype="application/json")
 
 def get_product(productId):
     #return product details - productId, title, url, price, image_url
