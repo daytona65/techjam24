@@ -1,23 +1,21 @@
 import { StatusBar } from 'expo-status-bar';
 import { Button, StyleSheet, Text, View } from 'react-native';
 import { Tabs } from './tabs';
-import Feed from './components/feed';
-import Card from './components/card';
+import { Feed, products } from './components/Feed';
+import { Matchmaker } from './components/Matchmaker';
 
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Feed />
-    </View>
+    <Feed />
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    border: "5px solid white"
   },
 });
