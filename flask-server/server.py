@@ -5,6 +5,9 @@ from bson import json_util, ObjectId
 from pymongo import MongoClient
 from api.user_service import *
 from api.product_service import *
+import pandas as pd
+from utils.utils import error_response, success_response, success_message
+
 
 app = Flask(__name__)
 
@@ -14,7 +17,9 @@ config = dotenv_values(".env")
 # MONGODB
 client = MongoClient(config['ATLAS_URI'])
 db = client[config['DB_NAME']]
-counter_collection = db['counters']
+
+products_collection = db['products']
+
 
 @app.route("/")
 def home():
@@ -30,5 +35,23 @@ def get_recommendations():
     userId = int(request.args.get('id'))
     return get_products_for_user(userId)
 
+@app.route('/products', methods=["GET"])
+def get_products():
+    return get_all_products()
+
+#to populate DB purposes
+# @app.route('/upload', methods=["GET"])
+# def upload_products():
+#     if request.method == 'GET':
+#         df = pd.read_csv('amazon.csv')
+#         products = df.drop(columns=['user_id', 'user_name', 'review_id', 'review_title', 'review_content'])
+#         products_list = products.to_dict('records')
+#         print('products', len(products_list))
+#         # products_collection.delete_many({})
+#         products_collection.insert_many(products_list)
+#         return success_message("products successfully created!")
+#     else:
+#         return error_response("Invalid method[GET/POST]")
+
 if __name__ == "__main__":
-	app.run(debug=True)
+    app.run(debug=True)
