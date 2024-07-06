@@ -52,19 +52,22 @@ export const Feed = () => {
         </Pressable>
         );
     };
-
     const [products, setProducts] = useState([])
     const [loading, setLoading] = useState<boolean>(false)
 
     useEffect(() => {
         setLoading(true);
         console.log('fetching')
-        fetch(`https://127.0.0.1:5000/products`)
-        .then((res) => {
-            res.json().then((data) => {
-                setProducts(data);
-                console.log(data);
-            });
+        fetch(`http://127.0.0.1:5000/products`, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json'
+            }
+        })
+        .then(res => res.text())
+        .then((data) => {
+            // setProducts(data);
+            console.log(data);
         })
         .catch(error => {
             console.error(error);
