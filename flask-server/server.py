@@ -31,6 +31,11 @@ def update_user_searches():
     user_id = int(request.args.get('id'))
     return update_recent_searches(user_id)
 
+@app.route('/updatepreference', methods=["POST"])
+def update_user_preference():
+    user_id = int(request.args.get('id'))
+    return update_preference(user_id)
+
 @app.route('/recommend', methods=["GET"])
 def get_recommendations():
     user_id = int(request.args.get('id'))

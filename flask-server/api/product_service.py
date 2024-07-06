@@ -44,14 +44,14 @@ def get_products_for_user(user_id):
                     user["name"], 
                     user["age_group"], 
                     user["gender"],
-                    # user["likes"],
-                    # user["dislikes"],
+                    user["likes"],
+                    user["dislikes"],
                     user["recent_searches"]
                 )
         
         # get user's likes, dislikes, recent searches, demographics
-        # likes = userObj.likes
-        # dislikes = userObj.dislikes
+        likes = userObj.likes
+        dislikes = userObj.dislikes
         recent_searches = userObj.recent_searches
 
         #check which case to apply
@@ -61,7 +61,7 @@ def get_products_for_user(user_id):
 
 
         #case 2: collaborative filtering - what other users have bought
-        recommendations = collaborative_filtering()
+        # recommendations = collaborative_filtering()
 
         #case 3: content based filtering - find objects that are similar to recent searches
 
