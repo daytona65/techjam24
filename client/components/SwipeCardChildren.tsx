@@ -12,7 +12,7 @@ export const SwipeCardChildren = ({
 }: ISwipeCardChildren) => {
   return (
     <Card
-      profileImg={item.product_img}
+      profileImg={item.img_link}
       minWidth={300}
       maxHeight={600}
       minHeight={700}>

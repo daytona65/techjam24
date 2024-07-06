@@ -27,7 +27,7 @@ export interface IProduct {
     rating: string; // " 4.2"
     rating_count: string; // " 234234"
     description: string;
-    product_img: string;
+    img_link: string;
 }
 
 export interface IProductDiscovery {

@@ -55,24 +55,38 @@ export const Feed = () => {
     const [products, setProducts] = useState([])
     const [loading, setLoading] = useState<boolean>(false)
 
-    useEffect(() => {
-        setLoading(true);
-        console.log('fetching')
-        fetch(`http://127.0.0.1:5000/products`, {
-            method: 'GET',
-            headers: {
-                'Accept': 'application/json'
+    const fetchProducts = async () => {
+        try {
+            const response = await fetch('http://127.0.0.1:5000/recommend?id=1');
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
             }
-        })
-        .then(res => res.text())
-        .then((data) => {
-            // setProducts(data);
-            console.log(data);
-        })
-        .catch(error => {
-            console.error(error);
-        });
-        setLoading(false);
+            const productsArray = await response.text(); 
+            setProducts(JSON.parse(productsArray)); 
+          } catch (error) {
+            console.error('Error fetching data:', error);
+          }
+    }
+
+    useEffect(() => {
+        fetchProducts()
+    //     setLoading(true);
+    //     console.log('fetching')
+    //     fetch(`http://127.0.0.1:5000/products`, {
+    //         method: 'GET',
+    //         headers: {
+    //             'Accept': 'application/json'
+    //         }
+    //     })
+    //     .then(res => res.json())
+    //     .then((data) => {
+    //         // setProducts(data);
+    //         console.log(JSON.parse(data));
+    //     })
+    //     .catch(error => {
+    //         console.error(error);
+    //     });
+    //     setLoading(false);
     }, []);
 
     const renderItem = ({ item, index }) => {
