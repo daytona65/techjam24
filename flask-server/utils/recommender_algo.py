@@ -1,4 +1,8 @@
 from utils.data_preprocessing import *
+from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
+from sklearn.neighbors import NearestNeighbors
+from sklearn.cluster import KMeans
+from sklearn.metrics import adjusted_rand_score
 
 # case 1: cold start
 def recommend_top_products(products):
@@ -14,6 +18,8 @@ def recommend_top_products(products):
 # basically compare similar users and recommend
 def collaborative_filtering():
     return 
+
+# def content_based_filtering():
 
 
 def hybrid_recommendation(data, product_id, top_n=10):
