@@ -2,5 +2,9 @@
 node_modules
 flask-server/.venv
 flask-server/.env
-flask-server/api/__pycache__
-flask-server/utils/__pycache__
+flask-server/api/__pycache__/*
+flask-server/utils/__pycache__/*
+flask-server/api/__pycache__/dataModels.cpython-312.pyc
+flask-server/api/__pycache__/product_service.cpython-312.pyc
+flask-server/api/__pycache__/user_service.cpython-312.pyc
+flask-server/utils/__pycache__/utils.cpython-312.pyc
