@@ -42,27 +42,33 @@ def get_products_for_user(user_id):
     if request.method == 'GET':
         user_json_string = json.dumps(list(user_collection.find({"user_id": user_id}))[0], default=json_util.default)
         user = json.loads(user_json_string)
-        
-        # userObj = User(
-        #             user["user_id"],
-        #             user["name"], 
-        #             user["age_group"], 
-        #             user["gender"],
-        #             user["likes"],
-        #             # user["dislikes"],
-        #             user["recent_searches"]
-        #         )
+
+        userObj = User(
+                    user["user_id"],
+                    user["name"], 
+                    user["age_group"], 
+                    user["gender"],
+                    user["likes"],
+                    user["dislikes"],
+                    user["recent_searches"]
+                )
         
         # # get user's likes, dislikes, recent searches, demographics
-        # likes = userObj.likes
-        # # dislikes = userObj.dislikes
-        # recent_searches = userObj.recent_searches
+        likes = userObj.likes
+        dislikes = userObj.dislikes
+        recent_searches = userObj.recent_searches
 
-        #check which case to apply
         processed_data = preprocess_data(data_file_path)
-        
-        #case 1: if new user with no existing likes - use demographics - gender, age
-        recommendations = recommend_top_products(processed_data)
+        #check which case to apply
+        if len(likes) == 0 and len(dislikes) == 0:
+            #case 1: if new user with no existing likes - use demographics - gender, age
+            recommendations = recommend_top_products(processed_data)
+
+        elif len(likes) > 0:
+            recommendations = hybrid_recommendation(processed_data, likes[-1])
+
+        else:
+            recommendations = recommend_top_products(processed_data)
 
 
         #case 2: collaborative filtering - what other users have bought

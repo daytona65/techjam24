@@ -3,7 +3,9 @@ from utils.data_preprocessing import *
 # case 1: cold start
 def recommend_top_products(products):
     most_popular = products.sort_values('rating_count', ascending=False)
-    top10 = most_popular[:10]
+    
+    # get most popular product from each category
+    top10 = most_popular.groupby('parent_category').first()
 
     #return top 10 most popular products
     return top10.to_dict('records')

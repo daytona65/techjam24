@@ -4,6 +4,8 @@ import re
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.preprocessing import LabelEncoder
+from textblob import TextBlob
+
 
 def convert_to_float(price):
     return float(price.replace('₹', '').replace(',', ''))
@@ -14,6 +16,15 @@ def clean_text(text):
     stop_words = set(stopwords.words('english'))
     text = ' '.join([word for word in text.split() if word not in stop_words])
     return text
+
+def analyze_sentiment(text):
+    analysis = TextBlob(text)
+    if analysis.sentiment.polarity > 0.1:
+        return 'Positive'
+    elif analysis.sentiment.polarity < -0.1:
+        return 'Negative'
+    else:
+        return 'Neutral'
 
 def preprocess_data(data_file_path):
     df = pd.read_csv(data_file_path)
@@ -32,11 +43,13 @@ def preprocess_data(data_file_path):
     df['category_text'] = df['category'].apply(clean_text)
     
     df['category'] = df['category'].apply(lambda x: x.split('|') if pd.notnull(x) else x)
+    df['sentiment'] = df['review_content'].apply(analyze_sentiment)
+    df['parent_category'] = df['category'].apply(lambda x: x[0])
 
     return df
 
 def feature_engineering(data):
-    data['combined_text'] = data['product_name'] + ' ' + data['category'] + ' ' + data['about_product'] + ' ' + data['review_content']
+    data['combined_text'] = data['product_name'] + ' ' + data['category_text'] + ' ' + data['about_product'] + ' ' + data['review_content']
     vectorizer = TfidfVectorizer(stop_words='english', max_df=0.95, min_df=2, ngram_range=(1, 1))
     tfidf_matrix = vectorizer.fit_transform(data['combined_text'])
 
