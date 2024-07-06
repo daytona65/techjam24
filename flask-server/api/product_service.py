@@ -16,6 +16,8 @@ db = client[config['DB_NAME']]
 user_collection = db['users']
 product_collection = db['products']
 
+data_file_path = 'amazon.csv'
+
 '''
 get_products
 - all products
@@ -39,25 +41,25 @@ def get_products_for_user(user_id):
         user_json_string = json.dumps(list(user_collection.find({"user_id": user_id}))[0], default=json_util.default)
         user = json.loads(user_json_string)
         
-        userObj = User(
-                    user["user_id"],
-                    user["name"], 
-                    user["age_group"], 
-                    user["gender"],
-                    user["likes"],
-                    user["dislikes"],
-                    user["recent_searches"]
-                )
+        # userObj = User(
+        #             user["user_id"],
+        #             user["name"], 
+        #             user["age_group"], 
+        #             user["gender"],
+        #             user["likes"],
+        #             # user["dislikes"],
+        #             user["recent_searches"]
+        #         )
         
-        # get user's likes, dislikes, recent searches, demographics
-        likes = userObj.likes
-        dislikes = userObj.dislikes
-        recent_searches = userObj.recent_searches
+        # # get user's likes, dislikes, recent searches, demographics
+        # likes = userObj.likes
+        # # dislikes = userObj.dislikes
+        # recent_searches = userObj.recent_searches
 
         #check which case to apply
 
         #case 1: if new user with no existing likes - use demographics - gender, age
-        recommendations = recommend_top_products()
+        recommendations = recommend_top_products(data_file_path)
 
 
         #case 2: collaborative filtering - what other users have bought
@@ -70,7 +72,7 @@ def get_products_for_user(user_id):
 
 def upload_products():
     if request.method == 'GET':
-        df = preprocess_data('amazon.csv')
+        df = preprocess_data(data_file_path)
         cols_to_drop = [
             'user_id', 
             'user_name', 
