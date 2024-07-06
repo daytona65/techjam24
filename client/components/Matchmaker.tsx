@@ -5,25 +5,14 @@ import Choice from './Choice';
 import { UserActions } from './UserActions';
 import { useProductsDiscover } from '../hooks/useProductsDiscover';
 import { SwipeCardChildren } from './SwipeCardChildren';
+import { IProductDiscovery, IProduct } from './exportInterface';
 // import { useInteractWithPeopleMutation } from '../../rtk-query';
 
-export interface IProduct {
-  id: number;
-  productImg: string;
-  name: string;
-  description: string;
-  category: string;
-}
-
-export interface IProductDiscovery {
-  productsToDiscover: IProduct[];
-  // refetch: () => void; Add refetch function to refresh products when it is finished
-}
-export const Matchmaker = ({productsToDiscover}: IProductDiscovery) => {
+export const Matchmaker = ({productsDiscovery}: IProductDiscovery) => {
 //   const [interact] = useInteractWithPeopleMutation({
 //     fixedCacheKey: 'interactWithPeople',
 //   });
-  const {products, setProducts} = useProductsDiscover({productsToDiscover});
+  const {products, setProducts} = useProductsDiscover({productsDiscovery});
 
   const likeOpacity = (swipe: any) =>
     swipe.x.interpolate({

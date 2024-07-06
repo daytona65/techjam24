@@ -5,7 +5,6 @@ from pymongo import MongoClient
 from bson import json_util, ObjectId
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
 
 from api.dataModels import *
 

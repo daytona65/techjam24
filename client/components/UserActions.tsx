@@ -1,22 +1,19 @@
 import React, { FC } from 'react';
 import { Image, TouchableOpacity, GestureResponderEvent, View, StyleSheet } from 'react-native';
 import IconFA from 'react-native-vector-icons/FontAwesome';
+import { IUserActions } from './exportInterface';
 // import { GestureResponderEvent  } from 'react-native-vector-icons';
-export interface IUserActions {
-  onReject: () => void;
-  onLike: () => void;
-}
 
 export const UserActions: FC<IUserActions> = ({onReject, onLike}) => {
-  const handlePressReject = (event: GestureResponderEvent) => {
+  const handlePressReject = (event) => {
     onReject();
     // return event;
   };
-  const handlePresslike = (event: GestureResponderEvent) => {
+  const handlePresslike = (event) => {
     onLike();
     // return event;
   };
-  const handlePressTiktokShop = (event: GestureResponderEvent) => {
+  const handlePressTiktokShop = (event) => {
     // return event;
   };
 

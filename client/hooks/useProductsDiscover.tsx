@@ -1,8 +1,8 @@
 import {useState, useEffect} from 'react';
-import { IProduct, IProductDiscovery } from '../components/Matchmaker';
+import { IProduct, IProductDiscovery } from '../components/exportInterface';
 
 export const useProductsDiscover = ({
-  productsToDiscover,
+  productsDiscovery,
 }: IProductDiscovery) => {
   const [products, setProducts] = useState<IProduct[]>([]);
 
@@ -19,8 +19,8 @@ export const useProductsDiscover = ({
   }, [products.length]);
 
   useEffect(() => {
-    setProducts(productsToDiscover);
-  }, [productsToDiscover]);
+    setProducts(productsDiscovery);
+  }, [productsDiscovery]);
 
   return {products: products, setProducts: setProducts};
 };

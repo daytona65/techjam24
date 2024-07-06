@@ -1,16 +1,13 @@
 import { View, Text, StyleSheet } from 'react-native';
 import React, { FC } from 'react';
+import { IChoice } from './exportInterface';
 
 const COLORS = {
   like: '#00eda6',
   nope: '#ff006f',
 };
 
-export interface IChoise {
-  type: 'like' | 'nope';
-}
-
-const Choice: FC<IChoise> = ({type}) => {
+const Choice: FC<IChoice> = ({type}) => {
   const color = COLORS[type];
 
   return (

@@ -1,7 +1,9 @@
+import React, { useEffect, useRef, useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { Button, StyleSheet, Text, View } from 'react-native';
 import { Tabs } from './tabs';
-import { Feed, products } from './components/Feed';
+import { Feed } from './components/Feed';
+import { products } from './components/exportData';
 import { Matchmaker } from './components/Matchmaker';
 
 

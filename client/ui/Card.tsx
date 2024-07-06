@@ -99,6 +99,8 @@ const styles = StyleSheet.create({
       color: 'white',
       fontSize: 18,
       fontWeight: '400',
+      overflow: "hidden",
+      flexWrap: 'wrap'
     },
     gradient: {
       borderRadius: 10,
