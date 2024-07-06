@@ -53,12 +53,13 @@ export const Feed = () => {
         );
     };
 
-    const [products, setProducts] = useState()
+    const [products, setProducts] = useState([])
     const [loading, setLoading] = useState<boolean>(false)
 
     useEffect(() => {
         setLoading(true);
-        fetch(`/products`)
+        console.log('fetching')
+        fetch(`https://127.0.0.1:5000/products`)
         .then((res) => {
             res.json().then((data) => {
                 setProducts(data);

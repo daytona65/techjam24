@@ -2,3 +2,6 @@ Flask
 python-dotenv~=0.21.1
 pymongo
 pandas~=1.5.3
+nltk
+scikit-learn
+TextBlob
