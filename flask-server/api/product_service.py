@@ -1,4 +1,4 @@
-from flask import Response, request
+from flask import Response, request, jsonify
 import json
 from dotenv import dotenv_values
 from pymongo import MongoClient
@@ -26,7 +26,9 @@ get_products
 def get_all_products():
     if request.method == 'GET':
         results = list(product_collection.find())
-        return Response(json.dumps(results, default=str), mimetype="application/json")
+        # formatted_response = {"products": results}
+        serialized = json.dumps(results, default=str)
+        return jsonify(json.loads(serialized)), 200
 
 def get_product_details(product_id):
     if request.method == 'GET':
@@ -57,9 +59,10 @@ def get_products_for_user(user_id):
         # recent_searches = userObj.recent_searches
 
         #check which case to apply
-
+        processed_data = preprocess_data(data_file_path)
+        
         #case 1: if new user with no existing likes - use demographics - gender, age
-        recommendations = recommend_top_products(data_file_path)
+        recommendations = recommend_top_products(processed_data)
 
 
         #case 2: collaborative filtering - what other users have bought
@@ -84,8 +87,10 @@ def upload_products():
 
         products = df.drop(columns=cols_to_drop)
         products_list = products.to_dict('records')
+        
+        for i in products_list:
+            product_collection.insert_one(i)
 
-        product_collection.insert_many(products_list)
         return success_message("products successfully created!")
     else:
         return error_response("Invalid method[GET/POST]")

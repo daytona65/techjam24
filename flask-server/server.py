@@ -21,6 +21,10 @@ db = client[config['DB_NAME']]
 def home():
     return "hello"
 
+@app.route('/users', methods=["GET"])
+def get_users():
+    return get_all_users()
+
 @app.route('/user', methods=["GET"])
 def get_user():
     user_id = int(request.args.get('id'))
@@ -60,4 +64,5 @@ def delete_products():
     return clear_products()
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(port=5000, debug=True)
+    
