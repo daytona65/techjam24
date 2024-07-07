@@ -1,13 +1,13 @@
 import { Stack } from 'expo-router';
-import { Text, View, SafeAreaView, Dimensions, FlatList, StyleSheet, Pressable } from 'react-native';
+import { Text, View, SafeAreaView, Dimensions, FlatList, StyleSheet, Pressable, Keyboard, TouchableWithoutFeedback, TouchableOpacity } from 'react-native';
 import { Video, ResizeMode } from 'expo-av';
 import React, { useEffect, useRef, useState } from 'react';
 import { Matchmaker } from './Matchmaker';
 import { BottomTabs } from './BottomTabs';
-import { products, videos } from './exportData';
 import { IProduct } from './exportInterface';
-import axios from 'axios';
 import { SideTabs } from './SideTabs';
+import { Search } from './Search';
+import { products, videos } from './exportData';
 
 
 export const refetch = () => {
@@ -65,9 +65,9 @@ export const Feed = () => {
               throw new Error('Network response was not ok');
             }
             const productsArray = await response.text();
-            console.log(productsArray);
+            // console.log(productsArray);
             setProducts(JSON.parse(productsArray));
-            console.log(products);
+            // console.log(products);
         } catch (error) {
             console.error('Error fetching data:', error);
         }
@@ -90,18 +90,21 @@ export const Feed = () => {
         }
     }
     return (
-        <View style={styles.container}>
-            <FlatList
-                data={videos}
-                renderItem={renderItem}
-                keyExtractor={item => item}
-                pagingEnabled
-                horizontal={false}
-                showsVerticalScrollIndicator={false}
-                viewabilityConfigCallbackPairs={viewabilityConfigCallbackPairs.current}
-            />
-            <BottomTabs />
-        </View>
+        // <TouchableOpacity onPress={() => Keyboard.dismiss()}>
+            <View style={styles.container}>
+                <FlatList
+                    data={videos}
+                    renderItem={renderItem}
+                    keyExtractor={item => item}
+                    pagingEnabled
+                    horizontal={false}
+                    showsVerticalScrollIndicator={false}
+                    viewabilityConfigCallbackPairs={viewabilityConfigCallbackPairs.current}
+                />
+                <Search />
+                <BottomTabs />
+            </View>
+        // </TouchableOpacity>
     );
 }
 

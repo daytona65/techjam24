@@ -5,7 +5,7 @@ export interface IChoice {
 }
 
 export interface IUserActions {
-    onReject: () => void;
+    onDislike: () => void;
     onLike: () => void;
 }
 
@@ -44,8 +44,5 @@ export interface ISwipeCard<T> {
     ) => React.ReactNode;
     items: T[];
     setItems: (fun: TPrevStateAct) => void;
-    renderActionBar: (
-        handleChoice: (direction: number) => void,
-    ) => React.ReactNode;
     onSwipeUser: (swipe: Animated.ValueXY, prevState: T[]) => void;
 }

@@ -4,9 +4,9 @@ import IconFA from 'react-native-vector-icons/FontAwesome';
 import { IUserActions } from './exportInterface';
 // import { GestureResponderEvent  } from 'react-native-vector-icons';
 
-export const UserActions: FC<IUserActions> = ({onReject, onLike}) => {
-  const handlePressReject = (event) => {
-    onReject();
+export const UserActions: FC<IUserActions> = ({onDislike, onLike}) => {
+  const handlePressDislike = (event) => {
+    onDislike();
     // return event;
   };
   const handlePresslike = (event) => {
@@ -29,7 +29,7 @@ export const UserActions: FC<IUserActions> = ({onReject, onLike}) => {
           iconStyle={styles.closeIconContent}
           backgroundColor="transparent"
           name="close"
-          onPress={handlePressReject}
+          onPress={onDislike}
         />
       </View>
 
@@ -44,7 +44,7 @@ export const UserActions: FC<IUserActions> = ({onReject, onLike}) => {
           color="black"
           backgroundColor="transparent"
           name="check"
-          onPress={handlePresslike}
+          onPress={onLike}
         />
       </View>
       {/* <View
@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
       backgroundColor: 'white',
     },
     likeWrapper: {
-      backgroundColor: '#9525ff',
-      padding: 10,
+      backgroundColor: 'green',
+      // padding: 10,
     },
   });

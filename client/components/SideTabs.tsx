@@ -22,8 +22,8 @@ const styles = StyleSheet.create({
         justifyContent: 'space-evenly',
         width: Dimensions.get('window').width,
         height: 430,
-        top: 330,
-        left: 340,
+        bottom: '10%',
+        left: '90%',
         zIndex: 0,
         backgroundColor: 'transparent',
     },
@@ -31,5 +31,8 @@ const styles = StyleSheet.create({
         width: 35,
         height: 35,
         margin: -10,
+        shadowOffset: {width: 0, height: 0},
+        shadowOpacity: 1,
+        shadowRadius: 5,
     }
 });

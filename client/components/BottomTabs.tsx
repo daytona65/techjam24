@@ -21,8 +21,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-evenly',
         width: Dimensions.get('window').width,
         height: 80,
-        top: 750,
-        zIndex: 0,
+        bottom: 0,
         backgroundColor: 'black',
     },
     icons: {
