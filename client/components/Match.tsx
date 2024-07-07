@@ -2,8 +2,8 @@ import React from "react";
 import { Dimensions, View, StyleSheet, Image, Text, Pressable, ImageBackground } from "react-native";
 
 
-export const Tutorial = (
-    {handleTutorial}
+export const Match = (
+    {handleMatch, item}
 ) => {
     return (
         <ImageBackground 
@@ -11,12 +11,12 @@ export const Tutorial = (
             style={styles.container}
             blurRadius={90}
         >
-            <Text style={styles.header}>Introducing Matchmaker for: </Text>
+            <Text style={styles.header}>Match Found!</Text>
             <Image resizeMode="contain" style={styles.image} source={require('../assets/shoplogo.png')} />
-            <Text style={styles.text}>Swipe left to dislike, swipe right to like</Text>
-            <Text style={styles.text}>If you get a match, you can get amazing discounts!</Text>
-            <Pressable style={styles.button} onPress={handleTutorial}>
-                <Text style={styles.yes}>Yes</Text>
+            <Text style={styles.text}>You have an exclusive discount code for this product:</Text>
+            <Text style={styles.text}>ASDQWERTYF!</Text>
+            <Pressable style={styles.button} onPress={handleMatch}>
+                <Text style={styles.yes}>Use Now</Text>
             </Pressable>
         </ ImageBackground>
     )

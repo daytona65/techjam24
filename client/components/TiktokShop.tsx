@@ -16,21 +16,24 @@ export const TiktokShop = (
                 onPress={onClose}
                 />
             </Pressable>
-            <ImageBackground source={{ uri: item.img_link }} style={styles.image} />
-            <Text style={styles.price}>${item.discounted_price}</Text>
-            <Text style={styles.title}>{item.product_name}</Text>
-            <View style={styles.ratingcontainer}>
-                <IconFA.Button
-                    color="#a67a0c"
-                    backgroundColor="transparent"
-                    name="star"
-                    style={{marginTop: -7, marginRight: -8}}
-                />
-                <Text style={styles.rating}>{item.rating}</Text>
-                <Text> / </Text>
-                <Text style={styles.rating}>5.0      {item.rating_count}</Text>
-                <Text> sold</Text>
+            <Image source={{ uri: item.img_link }} style={styles.image} />
+            <View style={styles.updated}>
+                <Text style={styles.price}>${item.discounted_price}</Text>
+                <Text style={styles.title}>{item.product_name}</Text>
+                <View style={styles.ratingcontainer}>
+                    <IconFA.Button
+                        color="#a67a0c"
+                        backgroundColor="transparent"
+                        name="star"
+                        style={{marginTop: -7, marginRight: -8}}
+                    />
+                    <Text style={styles.rating}>{item.rating}</Text>
+                    <Text> / </Text>
+                    <Text style={styles.rating}>5.0      {item.rating_count}</Text>
+                    <Text> sold</Text>
+                </View>
             </View>
+            
             
             <Image resizeMode="contain" source={require('../assets/tiktokshop.jpg')} style={styles.shopmenu}/>
         </ View>
@@ -52,6 +55,10 @@ const styles = StyleSheet.create({
         width: Dimensions.get('window').width,
         height: Dimensions.get('window').height * 0.3,
         borderBottomWidth: 10,
+    },
+    updated: {
+        paddingHorizontal: 15,
+        padding: 10
     },
     button: {
         alignItems: 'center',
@@ -91,7 +98,8 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: '700',
         width: "50%",
-        flexWrap: 'wrap'
+        flexWrap: 'wrap',
+        height: 40,
     },
     price: {
         alignSelf: 'flex-start',

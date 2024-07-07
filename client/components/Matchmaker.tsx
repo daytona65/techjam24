@@ -7,10 +7,15 @@ import { useProductsDiscover } from '../hooks/useProductsDiscover';
 import { SwipeCardChildren } from './SwipeCardChildren';
 import { IProductDiscovery, IProduct } from './exportInterface';
 import { Tutorial } from './Tutorial';
+import { Match } from './Match';
+import { TiktokShop } from './TiktokShop';
 
 export const Matchmaker = ({productsDiscovery, userId}: IProductDiscovery) => {
   const {products, setProducts} = useProductsDiscover({productsDiscovery, userId});
   const [tutorial, setTutorial] = useState(true)
+  const [count, setCount] = useState(0);
+  const [match, setMatch] = useState(false);
+  const [matchToShop, setMatchToShop] = useState(false);
 
   const likeOpacity = (swipe: any) =>
     swipe.x.interpolate({
@@ -56,6 +61,9 @@ export const Matchmaker = ({productsDiscovery, userId}: IProductDiscovery) => {
   ) => {
     const isLike = Number(JSON.stringify(swipe.x)) > 0;
     const userIdReceiver = prevState?.[0]?.product_id;
+    if (isLike) {
+      handleLike();
+    }
     const interactData = {
       sentiment: isLike ? 'like' : 'dislike',
       product_id: userIdReceiver
@@ -76,13 +84,42 @@ export const Matchmaker = ({productsDiscovery, userId}: IProductDiscovery) => {
     }
   };
 
+  const handleMatch = () => {
+    setMatch(false);
+    setMatchToShop(true);
+  }
+
+  const handleLike = () => {
+    if (count < 3) {
+      
+      let newcount = count+1;
+      console.log(newcount);
+      setCount(newcount);
+    } else {
+      setCount(0);
+      setMatch(true);
+    }
+  }
   const handleTutorial = () => {
     setTutorial(false);
+  };
+
+  const closeShop = () => {
+    setMatchToShop(false);
   }
 
   if (tutorial) {
     return <Tutorial handleTutorial={handleTutorial}/>
   }
+
+  if (match) {
+    return <Match handleMatch={handleMatch} item={products[0]} />
+  }
+
+  if (matchToShop) {
+    return <TiktokShop item={products[0]} onClose={closeShop} />
+  }
+
   return (
     <View style={styles.matchContainer}>
       <SwipeCard<IProduct>
