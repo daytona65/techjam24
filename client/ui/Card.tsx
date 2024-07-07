@@ -49,7 +49,7 @@ export const Card = ({
         source={{
           uri: profileImg,
         }}
-        resizeMode="cover"
+        resizeMode="contain"
       >
         <LinearGradient
           colors={['transparent',   '#050505']}

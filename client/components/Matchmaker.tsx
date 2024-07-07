@@ -1,5 +1,5 @@
 import React, { Fragment, useCallback, useEffect } from 'react';
-import { View, StyleSheet, Animated } from 'react-native';
+import { View, StyleSheet, Animated, Text } from 'react-native';
 import { SwipeCard } from './SwipeCard';
 import Choice from './Choice';
 import { UserActions } from './UserActions';
@@ -8,11 +8,11 @@ import { SwipeCardChildren } from './SwipeCardChildren';
 import { IProductDiscovery, IProduct } from './exportInterface';
 // import { useInteractWithPeopleMutation } from '../../rtk-query';
 
-export const Matchmaker = ({productsDiscovery}: IProductDiscovery) => {
+export const Matchmaker = ({productsDiscovery, userId}: IProductDiscovery) => {
 //   const [interact] = useInteractWithPeopleMutation({
 //     fixedCacheKey: 'interactWithPeople',
 //   });
-  const {products, setProducts} = useProductsDiscover({productsDiscovery});
+  const {products, setProducts} = useProductsDiscover({productsDiscovery, userId});
 
   const likeOpacity = (swipe: any) =>
     swipe.x.interpolate({
@@ -65,7 +65,7 @@ export const Matchmaker = ({productsDiscovery}: IProductDiscovery) => {
       product_id: userIdReceiver
     }
     try {
-      const response = await fetch('http://10.0.2.2:5000/updatepreference?id=2', {
+      const response = await fetch(`http://10.0.2.2:5000/updatepreference?id=${userId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

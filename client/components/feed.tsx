@@ -1,5 +1,5 @@
 import { Stack } from 'expo-router';
-import { Text, View, SafeAreaView, Dimensions, FlatList, StyleSheet, Pressable, Keyboard, TouchableWithoutFeedback, TouchableOpacity } from 'react-native';
+import { Text, View, SafeAreaView, Dimensions, FlatList, StyleSheet, Pressable, Keyboard } from 'react-native';
 import { Video, ResizeMode } from 'expo-av';
 import React, { useEffect, useRef, useState } from 'react';
 import { Matchmaker } from './Matchmaker';
@@ -8,13 +8,12 @@ import { IProduct } from './exportInterface';
 import { SideTabs } from './SideTabs';
 import { Search } from './Search';
 import { products, videos } from './exportData';
+import { shortenName } from '../hooks/useProductsDiscover';
+import { LoginScreen } from './LoginScreen';
 
-
-export const refetch = () => {
-
-}
-
-export const Feed = () => {
+export const Feed = (
+    {userId}
+) => {
     const [currentViewableItemIndex, setCurrentViewableItemIndex] = useState(0);
     const viewabilityConfig = { viewAreaCoveragePercentThreshold: 50 }
     const onViewableItemsChanged = ({ viewableItems }: any) => {
@@ -55,27 +54,23 @@ export const Feed = () => {
         </Pressable>
         );
     };
-    const [products, setProducts] = useState<IProduct[]>([])
-    const [loading, setLoading] = useState<boolean>(false)
+    const [products, setProducts] = useState<IProduct[]>([]);
 
     const fetchProducts = async () => {
         try {
-            const response = await fetch('http://10.0.2.2:5000/recommend?id=1'); // 10.0.2.2 for Android emulators
+            console.log("FetchProducts");
+            const response = await fetch(`http://10.0.2.2:5000/recommend?id=${userId}`); // 10.0.2.2 for Android emulators
             if (!response.ok) {
               throw new Error('Network response was not ok');
             }
             const productsArray = await response.text();
             // console.log(productsArray);
-            setProducts(JSON.parse(productsArray));
+            setProducts(shortenName(JSON.parse(productsArray), 40));
             // console.log(products);
         } catch (error) {
             console.error('Error fetching data:', error);
         }
     }
-
-    useEffect(() => {
-        fetchProducts();
-    }, []);
 
     const renderItem = ({ item, index }) => {
         if (typeof item === 'string') {
@@ -83,15 +78,23 @@ export const Feed = () => {
         } else {
             return (
                 <View style={styles.matchContainer}>
-                    <Matchmaker productsDiscovery={products} />
+                    <Matchmaker productsDiscovery={products} userId={userId} />
                 </View>
                 
             )
         }
-    }
+    };
+
+    useEffect(() => {
+        fetchProducts();
+    }, []);
+
     return (
-        // <TouchableOpacity onPress={() => Keyboard.dismiss()}>
-            <View style={styles.container}>
+            <View 
+                onStartShouldSetResponder={() => true}
+                onResponderRelease={() => Keyboard.dismiss()}
+                style={styles.container}
+            >
                 <FlatList
                     data={videos}
                     renderItem={renderItem}
@@ -101,10 +104,10 @@ export const Feed = () => {
                     showsVerticalScrollIndicator={false}
                     viewabilityConfigCallbackPairs={viewabilityConfigCallbackPairs.current}
                 />
-                <Search />
+                <Search userId={userId}/>
                 <BottomTabs />
             </View>
-        // </TouchableOpacity>
+            
     );
 }
 

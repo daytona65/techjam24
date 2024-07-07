@@ -32,6 +32,7 @@ export interface IProduct {
 
 export interface IProductDiscovery {
     productsDiscovery: IProduct[];
+    userId: string;
     // refetch: () => void; Add refetch function to refresh products when it is finished
 }
 

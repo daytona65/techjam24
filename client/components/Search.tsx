@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Dimensions, View, StyleSheet, Text, TextInput, FlatList, TextInputSubmitEditingEventData, NativeSyntheticEvent, Keyboard, TouchableWithoutFeedback } from "react-native";
 import IconFA from 'react-native-vector-icons/FontAwesome';
 
-export const Search = () => {
+export const Search = ({userId}) => {
     const [searchQuery, setSearchQuery] = useState('');
     
     const dropdownData = [
@@ -38,7 +38,7 @@ export const Search = () => {
         setSearchQuery('');
         dismissKeyboard();
         try {
-          const response = await fetch('http://10.0.2.2:5000/updatesearch?id=2', {
+          const response = await fetch(`http://10.0.2.2:5000/updatesearch?id=${userId}`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
@@ -64,11 +64,11 @@ export const Search = () => {
             />
             <TextInput
                 style={styles.input}
-                placeholder="Search Products"
+                placeholder="Search"
                 onChangeText={setSearchQuery}
                 value={searchQuery}
-                onSubmitEditing={handleSearch} // Handle search on submit (enter or search button)
-                returnKeyType="search" // Change return key label to 'Search'
+                onSubmitEditing={handleSearch}
+                returnKeyType="search"
             />
           </View>
             {/* <FlatList
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-evenly',
         width: Dimensions.get('window').width,
         height: 80,
-        top: 50,
+        top: '5%',
         left: 40,
         backgroundColor: 'transparent',
     },

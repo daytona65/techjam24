@@ -1,7 +1,8 @@
-import React, {useCallback, useRef} from 'react';
-import {View, Animated, PanResponder, Dimensions, StyleSheet} from 'react-native';
-import { ISwipeCard } from './exportInterface';
+import React, {useCallback, useRef, useState} from 'react';
+import {View, Animated, PanResponder, Dimensions, StyleSheet, TouchableOpacity} from 'react-native';
+import { IProduct, ISwipeCard } from './exportInterface';
 import { UserActions } from './UserActions';
+import { TiktokShop } from './TiktokShop';
 
 export const SwipeCard = <T,>({
     children,
@@ -76,6 +77,15 @@ export const SwipeCard = <T,>({
         [removeTopCard, swipe.x],
     );
 
+    const [isShopVisible, setIsShopVisible] = useState(false);
+    const openShop = () => {
+        setIsShopVisible(true);
+    }
+    const closeShop = () => {
+        setIsShopVisible(false);
+    }
+    
+
     return (
         <View>
             <View style={styles.container}>
@@ -85,7 +95,9 @@ export const SwipeCard = <T,>({
                     key={index}
                     style={[index === 0 ? animatedCardStyle : {}]}
                     {...(index === 0 ? panResponder.panHandlers : {})}>
-                    {children(item, swipe, index === 0)}
+                        <TouchableOpacity onPress={() => openShop()} activeOpacity={1}>
+                            {children(item, swipe, index === 0)}
+                        </TouchableOpacity>
                     </Animated.View>
                 ))
                 .reverse()}
@@ -94,6 +106,14 @@ export const SwipeCard = <T,>({
                 onLike={() => handleChoice(1)}
                 onDislike={() => handleChoice(-1)}
             />
+            {isShopVisible 
+                && 
+                <TiktokShop 
+                    item={items[0] as IProduct}
+                    onClose={closeShop}
+                />
+            }
+            
         </View>
     );
 };

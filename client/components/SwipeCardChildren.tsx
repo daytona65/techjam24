@@ -24,7 +24,7 @@ export const SwipeCardChildren = ({
           </Card.Title>
           <Card.Description>{item.description}</Card.Description>
         </View>
-          <Text style={styles.discount}>{item.discount_percentage}OFF!</Text>
+          <Text style={styles.discount}>{item.discount_percentage}% OFF!</Text>
       </Card.Info>
     </Card>
   );
@@ -37,12 +37,17 @@ const styles = StyleSheet.create({
     },
     discount: {
       position: 'relative',
-      width: 500,
-      top: -400,
-      left: -80,
-      transform: [{rotate: '-30deg'}],
+      backgroundColor: 'yellow',
+      textAlignVertical: 'center',
+      textAlign: 'center',
+      borderWidth: 5,
+      borderRadius: 50,
+      width: 100,
+      top: -300,
+      right: 100,
+      transform: [{rotate: '-20deg'}],
       flexWrap: 'wrap',
-      fontSize: 60,
+      fontSize: 30,
       fontWeight: '800'
     }
 });
