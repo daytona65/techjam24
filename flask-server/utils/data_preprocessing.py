@@ -27,7 +27,7 @@ def analyze_sentiment(text):
         return 'Neutral'
 
 def feature_engineering(data):
-    data['combined_text'] = data['product_name'] + ' ' + data['category_text'] + ' ' + data['about_product'] + ' ' + data['review_content']
+    data['combined_text'] = data['product_name_cleaned'] + ' ' + data['category_text'] + ' ' + data['about_product_cleaned'] + ' ' + data['review_content_cleaned']
     vectorizer = TfidfVectorizer(stop_words='english', max_df=0.95, min_df=2, ngram_range=(1, 1))
     tfidf_matrix = vectorizer.fit_transform(data['combined_text'])
 
@@ -50,9 +50,9 @@ def preprocess_data(data_file_path):
     df['rating'] = pd.to_numeric(df['rating'].astype(str).str.replace('|', ''), errors='coerce')
     df['rating_count'] = df['rating_count'].str.replace(',', '').astype(int)
     
-    df['product_name'] = df['product_name'].apply(clean_text)
-    df['about_product'] = df['about_product'].apply(clean_text)
-    df['review_content'] = df['review_content'].apply(clean_text)
+    df['product_name_cleaned'] = df['product_name'].apply(clean_text)
+    df['about_product_cleaned'] = df['about_product'].apply(clean_text)
+    df['review_content_cleaned'] = df['review_content'].apply(clean_text)
     df['category_text'] = df['category'].apply(clean_text)
     
     df['category'] = df['category'].apply(lambda x: x.split('|') if pd.notnull(x) else x)

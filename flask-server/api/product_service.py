@@ -87,14 +87,18 @@ def get_products_for_user(user_id):
 
 def upload_products():
     if request.method == 'GET':
-        df = preprocess_data(data_file_path)
+        df, _, _, _, _, _, _ = preprocess_data(data_file_path)
         cols_to_drop = [
             'user_id', 
             'user_name', 
             'review_id', 
             'review_title', 
             'review_content', 
-            'product_link'
+            'product_link',
+            'product_name_cleaned',
+            'about_product_cleaned',
+            'review_content_cleaned',
+            'category_text',
         ]
 
         products = df.drop(columns=cols_to_drop)
