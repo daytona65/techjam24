@@ -1,4 +1,4 @@
-import React, { Fragment, useCallback, useEffect } from 'react';
+import React, { Fragment, useCallback, useEffect, useState } from 'react';
 import { View, StyleSheet, Animated, Text } from 'react-native';
 import { SwipeCard } from './SwipeCard';
 import Choice from './Choice';
@@ -6,13 +6,11 @@ import { UserActions } from './UserActions';
 import { useProductsDiscover } from '../hooks/useProductsDiscover';
 import { SwipeCardChildren } from './SwipeCardChildren';
 import { IProductDiscovery, IProduct } from './exportInterface';
-// import { useInteractWithPeopleMutation } from '../../rtk-query';
+import { Tutorial } from './Tutorial';
 
 export const Matchmaker = ({productsDiscovery, userId}: IProductDiscovery) => {
-//   const [interact] = useInteractWithPeopleMutation({
-//     fixedCacheKey: 'interactWithPeople',
-//   });
   const {products, setProducts} = useProductsDiscover({productsDiscovery, userId});
+  const [tutorial, setTutorial] = useState(true)
 
   const likeOpacity = (swipe: any) =>
     swipe.x.interpolate({
@@ -56,10 +54,8 @@ export const Matchmaker = ({productsDiscovery, userId}: IProductDiscovery) => {
     swipe: Animated.ValueXY,
     prevState: IProduct[],
   ) => {
-    // console.log(swipe.x);
     const isLike = Number(JSON.stringify(swipe.x)) > 0;
     const userIdReceiver = prevState?.[0]?.product_id;
-    // console.log(isLike ? 'like' : 'dislike');
     const interactData = {
       sentiment: isLike ? 'like' : 'dislike',
       product_id: userIdReceiver
@@ -79,6 +75,14 @@ export const Matchmaker = ({productsDiscovery, userId}: IProductDiscovery) => {
       console.error('Error fetching data:', error);
     }
   };
+
+  const handleTutorial = () => {
+    setTutorial(false);
+  }
+
+  if (tutorial) {
+    return <Tutorial handleTutorial={handleTutorial}/>
+  }
   return (
     <View style={styles.matchContainer}>
       <SwipeCard<IProduct>

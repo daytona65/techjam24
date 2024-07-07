@@ -15,14 +15,14 @@ export const SwipeCardChildren = ({
       profileImg={item.img_link}
       minWidth={300}
       maxHeight={600}
-      minHeight={700}>
-      <Card.Info style={styles.userInfo}>
+      minHeight={750}>
+      <Card.Info style={styles.productInfo}>
         {isFirst && renderChoice(swipe)}
         <View>
           <Card.Title>
             {item.product_name}
           </Card.Title>
-          <Card.Description>{item.description}</Card.Description>
+          <Card.Description>{item.parent_category}</Card.Description>
         </View>
           <Text style={styles.discount}>{item.discount_percentage}% OFF!</Text>
       </Card.Info>
@@ -31,9 +31,10 @@ export const SwipeCardChildren = ({
 };
 
 const styles = StyleSheet.create({
-    userInfo: {
+    productInfo: {
         justifyContent: 'space-between',
         flexDirection: 'row',
+        paddingBottom: 50
     },
     discount: {
       position: 'relative',

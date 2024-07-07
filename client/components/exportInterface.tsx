@@ -20,13 +20,13 @@ export interface IProduct {
     id: number;
     product_id: string; // "B07JW9H4J1" 
     product_name: string; // "Wayona Nylon Braided USB to Lightning Fast Charging and Data Sync Cabl…"
-    category: string; // "Computers&Accessories|Accessories&Peripherals|Cables&Accessories|Cable…"
+    parent_category: string; // "Computers&Accessories|Accessories&Peripherals|Cables&Accessories|Cable…"
     discounted_price: string; // "₹399"
     actual_price: string;
     discount_percentage: string; // 64%
     rating: string; // " 4.2"
     rating_count: string; // " 234234"
-    description: string;
+    about_product: string;
     img_link: string;
 }
 

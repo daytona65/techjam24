@@ -46,21 +46,25 @@ export const Card = ({
     <View style={[styles.card, cardStyles]}>
       <ImageBackground
         style={[styles.cover]}
-        source={{
-          uri: profileImg,
-        }}
-        resizeMode="contain"
-      >
-        <LinearGradient
-          colors={['transparent',   '#050505']}
-          style={styles.gradient}
+        source={require('../assets/b1.jpg')}
         >
-          <View style={[styles.coverContainer]}>
-            {children}
-          </View>
-        </LinearGradient>
+        <ImageBackground
+          style={[styles.cover]}
+          source={{
+            uri: profileImg,
+          }}
+          resizeMode="contain"
+        >
+          <LinearGradient
+            colors={['transparent',   '#050505']}
+            style={styles.gradient}
+          >
+            <View style={[styles.coverContainer]}>
+              {children}
+            </View>
+          </LinearGradient>
+        </ImageBackground>
       </ImageBackground>
-      
     </View>
   );
 };
@@ -71,7 +75,7 @@ const styles = StyleSheet.create({
       borderBottomLeftRadius: 10,
       borderBottomRightRadius: 10,
       overflow: 'hidden',
-      backgroundColor: 'white',
+      // backgroundColor: '#c9c29b',
       shadowOffset: {width: 0, height: 0},
       shadowOpacity: 1,
       shadowRadius: 8,

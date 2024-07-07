@@ -64,9 +64,7 @@ export const Feed = (
               throw new Error('Network response was not ok');
             }
             const productsArray = await response.text();
-            // console.log(productsArray);
             setProducts(shortenName(JSON.parse(productsArray), 40));
-            // console.log(products);
         } catch (error) {
             console.error('Error fetching data:', error);
         }
@@ -80,7 +78,6 @@ export const Feed = (
                 <View style={styles.matchContainer}>
                     <Matchmaker productsDiscovery={products} userId={userId} />
                 </View>
-                
             )
         }
     };

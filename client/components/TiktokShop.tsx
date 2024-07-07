@@ -1,7 +1,6 @@
 import React from "react";
 import { Dimensions, View, StyleSheet, Image, Text, Button, ImageBackground, Pressable } from "react-native";
 import { IProduct } from "./exportInterface";
-import { ShopBottomTabs } from "./ShopBottomTabs";
 import IconFA from 'react-native-vector-icons/FontAwesome';
 
 export const TiktokShop = (

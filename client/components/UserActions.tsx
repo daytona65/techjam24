@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
       backgroundColor: 'white',
     },
     likeWrapper: {
-      backgroundColor: 'green',
+      backgroundColor: 'cyan',
       // padding: 10,
     },
   });

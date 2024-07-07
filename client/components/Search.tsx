@@ -54,7 +54,6 @@ export const Search = ({userId}) => {
       };
 
     return (
-      
         <View style={styles.container}>
           <View style={styles.searchbar}>
             <IconFA.Button
@@ -85,11 +84,11 @@ export const Search = ({userId}) => {
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'column',
-        position: 'absolute',
+        // position: 'absolute',
         justifyContent: 'space-evenly',
         width: Dimensions.get('window').width,
         height: 80,
-        top: '5%',
+        top: '50%',
         left: 40,
         backgroundColor: 'transparent',
     },
