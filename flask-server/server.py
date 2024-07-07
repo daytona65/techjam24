@@ -12,6 +12,7 @@ app = Flask(__name__)
 
 # retrieve dotenv config
 config = dotenv_values(".env")
+data_file_path = 'amazon.csv'
 
 # MONGODB
 client = MongoClient(config['ATLAS_URI'])

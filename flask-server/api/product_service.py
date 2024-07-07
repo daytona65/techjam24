@@ -17,6 +17,7 @@ user_collection = db['users']
 product_collection = db['products']
 
 data_file_path = 'amazon.csv'
+processed_data, sim_matrix, p_u_matrix, vectorizer, model, order_centroids, terms = preprocess_data(data_file_path)
 
 '''
 get_products
@@ -37,6 +38,13 @@ def get_product_details(product_id):
 
 '''
 get recommendations for users
+
+case 1: if new user with no existing likes & dislikes
+1a. recent_search empty - recommend most popular products
+1b. recent search not empty - recommend using past searches 
+
+case 2: have likes - hybrid reco
+
 '''
 def get_products_for_user(user_id):
     if request.method == 'GET':
@@ -55,27 +63,25 @@ def get_products_for_user(user_id):
         
         # # get user's likes, dislikes, recent searches, demographics
         likes = userObj.likes
-        dislikes = userObj.dislikes
         recent_searches = userObj.recent_searches
+        
+        if len(likes) == 0:
+            if len(recent_searches) == 0:
+                print('using cold start recommendation')
+                recommendations = recommend_top_products(processed_data)
 
-        processed_data = preprocess_data(data_file_path)
-        #check which case to apply
-        if len(likes) == 0 and len(dislikes) == 0:
-            #case 1: if new user with no existing likes - use demographics - gender, age
-            recommendations = recommend_top_products(processed_data)
+            else:
+                print('using search based recommendation')
+                print('search word: ', recent_searches[-1])
+                recommendations = search_recommendation(processed_data, recent_searches[-1], vectorizer, model, order_centroids, terms)
 
         elif len(likes) > 0:
-            recommendations = hybrid_recommendation(processed_data, likes[-1])
+            print('using hybrid recommendation')
+            recommendations = hybrid_recommendation(processed_data, likes[-1], sim_matrix, p_u_matrix)
 
-        else:
+        else: #default
+            print('using default recommendation')
             recommendations = recommend_top_products(processed_data)
-
-
-        #case 2: collaborative filtering - what other users have bought
-        # recommendations = collaborative_filtering()
-
-        #case 3: content based filtering - find objects that are similar to recent searches
-
 
         return recommendations
 
