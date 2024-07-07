@@ -56,15 +56,16 @@ export const Matchmaker = ({productsDiscovery}: IProductDiscovery) => {
     swipe: Animated.ValueXY,
     prevState: IProduct[],
   ) => {
+    // console.log(swipe.x);
     const isLike = Number(JSON.stringify(swipe.x)) > 0;
     const userIdReceiver = prevState?.[0]?.product_id;
-
+    // console.log(isLike ? 'like' : 'dislike');
     const interactData = {
-      sentiment: isLike ? 'dislike' : 'like',
+      sentiment: isLike ? 'like' : 'dislike',
       product_id: userIdReceiver
     }
     try {
-      const response = await fetch('http://10.0.2.2:5000/updatepreference?id=1', {
+      const response = await fetch('http://10.0.2.2:5000/updatepreference?id=2', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -84,12 +85,6 @@ export const Matchmaker = ({productsDiscovery}: IProductDiscovery) => {
         onSwipeUser={handleSwipeUserMatching}
         items={products}
         setItems={setProducts}
-        renderActionBar={handleChoice => (
-          <UserActions
-            onLike={() => handleChoice(1)}
-            onReject={() => handleChoice(-1)}
-          />
-        )}
       >
         {(item, swipe, isFirst) => (
           <SwipeCardChildren

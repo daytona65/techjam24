@@ -1,12 +1,12 @@
 import React, {useCallback, useRef} from 'react';
 import {View, Animated, PanResponder, Dimensions, StyleSheet} from 'react-native';
 import { ISwipeCard } from './exportInterface';
+import { UserActions } from './UserActions';
 
 export const SwipeCard = <T,>({
     children,
     items,
     setItems,
-    renderActionBar,
     onSwipeUser,
 }: ISwipeCard<T>) => {
     const {height} = Dimensions.get('screen');
@@ -68,7 +68,7 @@ export const SwipeCard = <T,>({
     const handleChoice = useCallback(
         (direction: number) => {
         Animated.timing(swipe.x, {
-            toValue: direction * 500,
+            toValue: direction * 300,
             duration: 400,
             useNativeDriver: true,
         }).start(removeTopCard);
@@ -90,8 +90,10 @@ export const SwipeCard = <T,>({
                 ))
                 .reverse()}
             </View>
-
-        {renderActionBar(handleChoice)}
+            <UserActions
+                onLike={() => handleChoice(1)}
+                onDislike={() => handleChoice(-1)}
+            />
         </View>
     );
 };
