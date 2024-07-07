@@ -12,7 +12,7 @@ export const Match = (
             blurRadius={90}
         >
             <Text style={styles.header}>Match Found!</Text>
-            <Image resizeMode="contain" style={styles.image} source={require('../assets/shoplogo.png')} />
+            <Image resizeMode="contain" style={styles.image} source={{ uri: item.img_link }} />
             <Text style={styles.text}>You have an exclusive discount code for this product:</Text>
             <Text style={styles.text}>ASDQWERTYF!</Text>
             <Pressable style={styles.button} onPress={handleMatch}>

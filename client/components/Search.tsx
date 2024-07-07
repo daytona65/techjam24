@@ -84,11 +84,11 @@ export const Search = ({userId}) => {
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'column',
-        // position: 'absolute',
+        position: 'absolute',
         justifyContent: 'space-evenly',
         width: Dimensions.get('window').width,
         height: 80,
-        top: '50%',
+        top: '5%',
         left: 40,
         backgroundColor: 'transparent',
     },
