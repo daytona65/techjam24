@@ -9,13 +9,16 @@ import { IProductDiscovery, IProduct } from './exportInterface';
 import { Tutorial } from './Tutorial';
 import { Match } from './Match';
 import { TiktokShop } from './TiktokShop';
+import { Limit } from './Limit';
 
 export const Matchmaker = ({productsDiscovery, userId}: IProductDiscovery) => {
   const {products, setProducts} = useProductsDiscover({productsDiscovery, userId});
   const [tutorial, setTutorial] = useState(true)
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(2);
+  const [limit, setLimit] = useState(false);
   const [match, setMatch] = useState(false);
   const [matchToShop, setMatchToShop] = useState(false);
+  const [previousProduct, setPreviousProduct] = useState(products[0]);
 
   const likeOpacity = (swipe: any) =>
     swipe.x.interpolate({
@@ -61,6 +64,7 @@ export const Matchmaker = ({productsDiscovery, userId}: IProductDiscovery) => {
   ) => {
     const isLike = Number(JSON.stringify(swipe.x)) > 0;
     const userIdReceiver = prevState?.[0]?.product_id;
+    setPreviousProduct(prevState?.[0]);
     if (isLike) {
       handleLike();
     }
@@ -90,13 +94,12 @@ export const Matchmaker = ({productsDiscovery, userId}: IProductDiscovery) => {
   }
 
   const handleLike = () => {
-    if (count < 3) {
-      
-      let newcount = count+1;
-      console.log(newcount);
-      setCount(newcount);
-    } else {
-      setCount(0);
+    const random = Math.random() < 0.2 // Probability that you get a match between 0 and 1 inclusive
+    setCount(count - 1);
+    console.log(count);
+    if (count < 0) {
+      setLimit(true);
+    } else if (random) {
       setMatch(true);
     }
   }
@@ -113,11 +116,15 @@ export const Matchmaker = ({productsDiscovery, userId}: IProductDiscovery) => {
   }
 
   if (match) {
-    return <Match handleMatch={handleMatch} item={products[0]} />
+    return <Match handleMatch={handleMatch} item={previousProduct} />
   }
 
   if (matchToShop) {
-    return <TiktokShop item={products[0]} onClose={closeShop} />
+    return <TiktokShop item={previousProduct} onClose={closeShop} />
+  }
+
+  if (limit) {
+    return <Limit />
   }
 
   return (
