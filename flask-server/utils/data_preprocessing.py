@@ -50,9 +50,9 @@ def preprocess_data(data_file_path):
     df['rating'] = pd.to_numeric(df['rating'].astype(str).str.replace('|', ''), errors='coerce')
     df['rating_count'] = df['rating_count'].str.replace(',', '').astype(int)
     
-    df['product_name'] = df['product_name'].apply(clean_text)
-    df['about_product'] = df['about_product'].apply(clean_text)
-    df['review_content'] = df['review_content'].apply(clean_text)
+    df['product_name_text'] = df['product_name'].apply(clean_text)
+    df['about_product_text'] = df['about_product'].apply(clean_text)
+    df['review_content_text'] = df['review_content'].apply(clean_text)
     df['category_text'] = df['category'].apply(clean_text)
     
     df['category'] = df['category'].apply(lambda x: x.split('|') if pd.notnull(x) else x)
