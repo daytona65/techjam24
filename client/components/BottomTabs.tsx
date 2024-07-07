@@ -5,23 +5,28 @@ import { Dimensions, View, StyleSheet, Image, Text } from "react-native";
 export const BottomTabs = () => {
     return (
         <View style={styles.container}>
-            <Text>Testing</Text>
-            <Image source={require('../assets/home.png')} />
-            <Image source={require('../assets/shop.png')} />
-            <Image source={require('../assets/create.png')} />
-            <Image source={require('../assets/inbox.png')} />
-            <Image source={require('../assets/profile.png')} />
-        </View>
+            <Image source={require('../assets/home.png')} style={styles.icons}/>
+            <Image source={require('../assets/shop.png')} style={styles.icons}/>
+            <Image source={require('../assets/create.png')} style={styles.icons}/>
+            <Image source={require('../assets/inbox.png')} style={styles.icons}/>
+            <Image source={require('../assets/profile.png')} style={[styles.icons, {width: 55, height: 60}]}/>
+        </ View>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        position: 'static',
+        flexDirection: 'row',
+        position: 'absolute',
+        justifyContent: 'space-evenly',
         width: Dimensions.get('window').width,
-        height: 1000,
-        zIndex: 999,
+        height: 80,
+        top: 750,
+        zIndex: 0,
         backgroundColor: 'black',
     },
+    icons: {
+        width: 60,
+        height: 60,
+    }
 });

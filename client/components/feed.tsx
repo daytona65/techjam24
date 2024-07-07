@@ -7,6 +7,7 @@ import { BottomTabs } from './BottomTabs';
 import { products, videos } from './exportData';
 import { IProduct } from './exportInterface';
 import axios from 'axios';
+import { SideTabs } from './SideTabs';
 
 
 export const refetch = () => {
@@ -49,11 +50,12 @@ export const Feed = () => {
                     useNativeControls={false}
                     onPlaybackStatusUpdate={status => setStatus(() => status)}
                 />
+                <SideTabs />
             </View>
         </Pressable>
         );
     };
-    const [products, setProducts] = useState([])
+    const [products, setProducts] = useState<IProduct[]>([])
     const [loading, setLoading] = useState<boolean>(false)
 
     const fetchProducts = async () => {
@@ -64,7 +66,8 @@ export const Feed = () => {
             }
             const productsArray = await response.text();
             console.log(productsArray);
-            setProducts(JSON.parse(productsArray)); 
+            setProducts(JSON.parse(productsArray));
+            console.log(products);
         } catch (error) {
             console.error('Error fetching data:', error);
         }
@@ -97,7 +100,6 @@ export const Feed = () => {
                 showsVerticalScrollIndicator={false}
                 viewabilityConfigCallbackPairs={viewabilityConfigCallbackPairs.current}
             />
-            <Text>Hello</Text>
             <BottomTabs />
         </View>
     );
