@@ -62,7 +62,8 @@ export const Feed = () => {
             if (!response.ok) {
               throw new Error('Network response was not ok');
             }
-            const productsArray = await response.text(); 
+            const productsArray = await response.text();
+            console.log(productsArray);
             setProducts(JSON.parse(productsArray)); 
         } catch (error) {
             console.error('Error fetching data:', error);
