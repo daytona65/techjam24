@@ -3,5 +3,5 @@ node_modules
 flask-server/.venv
 flask-server/venv
 flask-server/.env
-flask-server/api/__pycache__
-flask-server/utils/__pycache__
+flask-server/api/__pycache__/*
+flask-server/utils/__pycache__/*

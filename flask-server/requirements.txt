@@ -5,3 +5,4 @@ pandas~=1.5.3
 nltk
 scikit-learn
 TextBlob
+matplotlib
