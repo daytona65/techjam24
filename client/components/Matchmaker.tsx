@@ -66,6 +66,7 @@ export const Matchmaker = ({productsDiscovery}: IProductDiscovery) => {
     }
     try {
       const response = await fetch('http://10.0.2.2:5000/updatepreference?id=2', {
+      // const response = await fetch('http://localhost:5000/updatepreference?id=2', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -76,7 +77,7 @@ export const Matchmaker = ({productsDiscovery}: IProductDiscovery) => {
         throw new Error('POST response was not ok');
       }
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error('Error fetching data swipe:', error);
     }
   };
   return (

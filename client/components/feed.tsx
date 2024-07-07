@@ -60,14 +60,18 @@ export const Feed = () => {
 
     const fetchProducts = async () => {
         try {
-            const response = await fetch('http://10.0.2.2:5000/recommend?id=1'); // 10.0.2.2 for Android emulators
+            // const response = await fetch('http://localhost:5000/recommend?id=1'); // 10.0.2.2 for Android emulators, localhost for ios
+            const response = await fetch('http://10.0.2.2:5000/recommend?id=1'); // 10.0.2.2 for Android emulators, localhost for ios
             if (!response.ok) {
               throw new Error('Network response was not ok');
             }
             const productsArray = await response.text();
             // console.log(productsArray);
             setProducts(JSON.parse(productsArray));
-            // console.log(products);
+            // const productsArray = await response.json(); //json for ios
+            // console.log(productsArray);
+            // setProducts(productsArray);
+            console.log(products);
         } catch (error) {
             console.error('Error fetching data:', error);
         }
@@ -111,10 +115,11 @@ export const Feed = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        height: "100%"
     },
     videoContainer: {
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height+48
+        height: Dimensions.get('window').height
     },
     video: {
         width: '100%',
@@ -122,6 +127,6 @@ const styles = StyleSheet.create({
     },
     matchContainer: {
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height+50
+        height: Dimensions.get('window').height
     }
 });
