@@ -10,7 +10,6 @@ export const SwipeCard = <T,>({
     onSwipeUser,
 }: ISwipeCard<T>) => {
     const {height} = Dimensions.get('screen');
-
     const swipe = useRef(new Animated.ValueXY()).current;
     const titlSign = useRef(new Animated.Value(1)).current;
 

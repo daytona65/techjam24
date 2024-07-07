@@ -1,4 +1,4 @@
-import React, { Fragment, useCallback } from 'react';
+import React, { Fragment, useCallback, useEffect } from 'react';
 import { View, StyleSheet, Animated } from 'react-native';
 import { SwipeCard } from './SwipeCard';
 import Choice from './Choice';
@@ -52,20 +52,32 @@ export const Matchmaker = ({productsDiscovery}: IProductDiscovery) => {
     [],
   );
 
-  const handleSwipeUserMatching = (
+  const handleSwipeUserMatching = async (
     swipe: Animated.ValueXY,
     prevState: IProduct[],
   ) => {
     const isLike = Number(JSON.stringify(swipe.x)) > 0;
-    const userIdReceiver = prevState?.[0]?.id;
+    const userIdReceiver = prevState?.[0]?.product_id;
 
-    // interact({
-    //   interaction: isLike ? 'like' : 'reject',
-    //   userIdReceiver,
-    //   userIdTransmitter: 1,
-    // });
+    const interactData = {
+      sentiment: isLike ? 'dislike' : 'like',
+      product_id: userIdReceiver
+    }
+    try {
+      const response = await fetch('http://10.0.2.2:5000/updatepreference?id=1', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(interactData)
+      });
+      if (!response.ok) {
+        throw new Error('POST response was not ok');
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
   };
-
   return (
     <View style={styles.matchContainer}>
       <SwipeCard<IProduct>

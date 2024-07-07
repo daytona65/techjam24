@@ -3,6 +3,7 @@ import { Text, View, SafeAreaView, Dimensions, FlatList, StyleSheet, Pressable }
 import { Video, ResizeMode } from 'expo-av';
 import React, { useEffect, useRef, useState } from 'react';
 import { Matchmaker } from './Matchmaker';
+import { BottomTabs } from './BottomTabs';
 import { products, videos } from './exportData';
 import { IProduct } from './exportInterface';
 import axios from 'axios';
@@ -57,36 +58,19 @@ export const Feed = () => {
 
     const fetchProducts = async () => {
         try {
-            const response = await fetch('http://127.0.0.1:5000/recommend?id=1');
+            const response = await fetch('http://10.0.2.2:5000/recommend?id=1'); // 10.0.2.2 for Android emulators
             if (!response.ok) {
               throw new Error('Network response was not ok');
             }
             const productsArray = await response.text(); 
             setProducts(JSON.parse(productsArray)); 
-          } catch (error) {
+        } catch (error) {
             console.error('Error fetching data:', error);
-          }
+        }
     }
 
     useEffect(() => {
-        fetchProducts()
-    //     setLoading(true);
-    //     console.log('fetching')
-    //     fetch(`http://127.0.0.1:5000/products`, {
-    //         method: 'GET',
-    //         headers: {
-    //             'Accept': 'application/json'
-    //         }
-    //     })
-    //     .then(res => res.json())
-    //     .then((data) => {
-    //         // setProducts(data);
-    //         console.log(JSON.parse(data));
-    //     })
-    //     .catch(error => {
-    //         console.error(error);
-    //     });
-    //     setLoading(false);
+        fetchProducts();
     }, []);
 
     const renderItem = ({ item, index }) => {
@@ -112,6 +96,8 @@ export const Feed = () => {
                 showsVerticalScrollIndicator={false}
                 viewabilityConfigCallbackPairs={viewabilityConfigCallbackPairs.current}
             />
+            <Text>Hello</Text>
+            <BottomTabs />
         </View>
     );
 }
