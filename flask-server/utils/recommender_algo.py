@@ -65,6 +65,7 @@ def search_recommendation(data, search_term, vectorizer, model, order_centroids,
     product_in_same_cluster = data[data['cluster'] == recommended_cluster]
     # most_popular_in_cluster = product_in_same_cluster.sort_values('rating_count', ascending=False)
 
+    # return random sample products in the same cluster
     return product_in_same_cluster.sample(n=10).to_dict('records')
 
 
