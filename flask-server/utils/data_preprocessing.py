@@ -6,10 +6,29 @@ from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.preprocessing import LabelEncoder
 from textblob import TextBlob
+import requests
 
 def convert_to_float(price):
     return float(price.replace('₹', '').replace(',', ''))
 
+def check_image_url(url):
+    try:
+        headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'}
+        response = requests.head(url, headers=headers, allow_redirects=True)
+        if response.status_code == 200:
+            content_type = response.headers['Content-Type'].lower()
+            if 'image' in content_type:
+                return True
+            else:
+                # print(f"The URL '{url}' does not point to an image (Content-Type: {content_type})")
+                return False
+        else:
+            # print(f"Failed to retrieve image URL '{url}' (Status code: {response.status_code})")
+            return False
+    except requests.exceptions.RequestException as e:
+        print(f"Error checking URL '{url}': {e}")
+        return False
+    
 def clean_text(text):
     text = text.lower()
     text = re.sub(r'[^a-zA-Z0-9\s]', ' ', text)

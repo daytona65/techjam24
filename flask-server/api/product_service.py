@@ -16,7 +16,7 @@ db = client[config['DB_NAME']]
 user_collection = db['users']
 product_collection = db['products']
 
-data_file_path = 'amazon.csv'
+data_file_path = 'amazon_valid.csv'
 processed_data, sim_matrix, p_u_matrix, vectorizer, model, order_centroids, terms = preprocess_data(data_file_path)
 
 '''
