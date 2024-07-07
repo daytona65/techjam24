@@ -46,9 +46,9 @@ Android IP: `http://10.0.2.2:5000`)
 - Run the server: `python3 server.py`
 - Call the endpoint `/upload` to populate the database
 
-The complete available API routes are in `server.py` file.
+The complete available API routes are in the `server.py` file.
 
-\* Note: the database is not public and .env is not provide for obvious security reasons.. and we also have to whitelist your IP address for access to the database. Hence please reach out to us if you need to run a fully functional version of this application.
+\* Note: the database is not public and the .env is not provided for obvious security reasons.. and we also have to whitelist your IP address for access to the database. Hence please reach out to us if you need to run a fully functional version of this application.
 
 ## Tech Stack
 - Frontend: React-Native Expo

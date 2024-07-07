@@ -1,4 +1,5 @@
 import json
+import time
 from flask import Flask, Response, jsonify, request
 from dotenv import dotenv_values
 from bson import json_util, ObjectId
@@ -28,23 +29,48 @@ def get_users():
 
 @app.route('/user', methods=["GET"])
 def get_user():
+    start_time = time.time()
     user_id = int(request.args.get('id'))
-    return get_user_details(user_id)
+    result = get_user_details(user_id)
+
+    end_time = time.time()
+    execution_time = end_time - start_time
+    print('time taken to run /user', execution_time)
+
+    return result
 
 @app.route('/updatesearch', methods=["POST"])
 def update_user_searches():
+    start_time = time.time()
     user_id = int(request.args.get('id'))
-    return update_recent_searches(user_id)
+    result = update_recent_searches(user_id)
+    end_time = time.time()
+    execution_time = end_time - start_time
+
+    print('time taken to run /updatesearch', execution_time)
+    return result
 
 @app.route('/updatepreference', methods=["POST"])
 def update_user_preference():
+    start_time = time.time()
     user_id = int(request.args.get('id'))
-    return update_preference(user_id)
+    result = update_preference(user_id)
+
+    end_time = time.time()
+    execution_time = end_time - start_time
+
+    print('time taken to run /updatepreference', execution_time)
+    return result
 
 @app.route('/recommend', methods=["GET"])
 def get_recommendations():
+    start_time = time.time()
     user_id = int(request.args.get('id'))
-    return get_products_for_user(user_id)
+    result = get_products_for_user(user_id)
+    end_time = time.time()
+    execution_time = end_time - start_time
+    print('time taken to run /recommend', execution_time)
+    return result
 
 @app.route('/products', methods=["GET"])
 def get_products():
@@ -52,8 +78,15 @@ def get_products():
 
 @app.route('/product', methods=["GET"])
 def get_product():
+    start_time = time.time()
+
     product_id = request.args.get('id')
-    return get_product_details(product_id)
+    result = get_product_details(product_id)
+
+    end_time = time.time()
+    execution_time = end_time - start_time
+    print('time taken to run /product', execution_time)
+    return result
 
 #to populate DB purposes
 @app.route('/upload', methods=["GET"])
